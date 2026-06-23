@@ -1,47 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <title>Marks & Grade Calculator</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background-color: #f4f4f4;
+      margin-top: 80px;
+    }
+
+    input {
+      padding: 8px;
+      width: 250px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 8px 15px;
+      margin-top: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #result {
+      margin-top: 20px;
+      background: white;
+      display: inline-block;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+  </style>
 </head>
+
 <body>
-    
+
+  <h2>Student Marks & Grade Calculator</h2>
+
+  <input id="marks" placeholder="Enter marks (e.g. 80,70,90)">
+  <br>
+  <button onclick="calculate()">Calculate</button>
+
+  <div id="result"></div>
+
+  <script>
+    function calculate() {
+      let input = document.getElementById("marks").value;
+      let arr = input.split(",").map(Number);
+
+      let total = 0;
+      for (let i = 0; i < arr.length; i++) {
+        total += arr[i];
+      }
+
+      let avg = total / arr.length;
+      let grade = "";
+
+      if (avg >= 75) grade = "A";
+      else if (avg >= 60) grade = "B";
+      else if (avg >= 40) grade = "C";
+      else grade = "Fail";
+
+      document.getElementById("result").innerHTML =
+        "Total: " + total + "<br>Average: " + avg + "<br>Grade: " + grade;
+    }
+  </script>
+
 </body>
-
-<script>
-    let student = {
-        name : "abc",
-        age : 27
-    };
-
-   let jsonData = JSON.stringify(student);
-
-    console.log(jsonData);
-
-    let jsonString = `{"name":"srg","age":25}`;
-
-    let obj = JSON.parse(jsonString);
-
-    console.log(obj);
-    let student= {
-        name:"kjd",
-        age:22,
-        course:"cse"
-    };
-    for (let key in student){
-        console.log(key + ":" + student[key]);
-    }
-    let numbers= [60,70,80,90];
-    for (let value of numbers){
-        console.log(value);
-    }
-    try {
-        let x=y+10;
-    } ctach(error){
-        console.log("error");
-    }
-
-
-</script>
 </html>
